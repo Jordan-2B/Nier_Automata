@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo 2: Efecto Glitch CSS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Estilos Nier: Automata */
+        body {
+            background-color: #0a0a0a;
+            color: #e0e0e0;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* Efecto Glitch en Hover */
+        .glitch-card {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .glitch-card::before,
+        .glitch-card::after {
+            content: attr(data-title);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .glitch-card:hover::before {
+            animation: glitch-anim-1 0.4s infinite linear alternate-reverse;
+            opacity: 0.7;
+            color: #ff0055;
+            transform: translate(-2px, 0);
+            clip-path: inset(0 0 60% 0);
+        }
+
+        .glitch-card:hover::after {
+            animation: glitch-anim-2 0.4s infinite linear alternate-reverse;
+            opacity: 0.7;
+            color: #00ffff;
+            transform: translate(2px, 0);
+            clip-path: inset(40% 0 0 0);
+        }
+
+        @keyframes glitch-anim-1 {
+            0% { transform: translate(0); }
+            20% { transform: translate(-3px, 3px); }
+            40% { transform: translate(-3px, -3px); }
+            60% { transform: translate(3px, 3px); }
+            80% { transform: translate(3px, -3px); }
+            100% { transform: translate(0); }
+        }
+
+        @keyframes glitch-anim-2 {
+            0% { transform: translate(0); }
+            20% { transform: translate(3px, -3px); }
+            40% { transform: translate(3px, 3px); }
+            60% { transform: translate(-3px, -3px); }
+            80% { transform: translate(-3px, 3px); }
+            100% { transform: translate(0); }
+        }
+
+        .nier-border {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .nier-accent {
+            color: #00ffff;
+        }
+    </style>
+</head>
+<body class="p-8">
+
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-3xl font-bold mb-6 nier-accent">Ejemplo 2: Efecto Glitch con CSS</h1>
+        <p class="mb-8 text-sm">Pasa el cursor sobre las tarjetas de juegos para ver el efecto de distorsión.</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Tarjeta 1 -->
+            <div class="glitch-card p-6 nier-border bg-white/5 cursor-pointer" data-title="NieR: Automata">
+                <h3 class="text-xl font-bold mb-2">NieR: Automata</h3>
+                <p class="text-xs text-gray-400">Año: 2017 | Desarrollador: PlatinumGames</p>
+                <div class="mt-4 flex gap-2">
+                    <span class="px-2 py-1 text-xs border border-white/20">Acción</span>
+                    <span class="px-2 py-1 text-xs border border-white/20">RPG</span>
+                </div>
+            </div>
+
+            <!-- Tarjeta 2 -->
+            <div class="glitch-card p-6 nier-border bg-white/5 cursor-pointer" data-title="Hollow Knight">
+                <h3 class="text-xl font-bold mb-2">Hollow Knight</h3>
+                <p class="text-xs text-gray-400">Año: 2017 | Desarrollador: Team Cherry</p>
+                <div class="mt-4 flex gap-2">
+                    <span class="px-2 py-1 text-xs border border-white/20">Metroidvania</span>
+                    <span class="px-2 py-1 text-xs border border-white/20">Indie</span>
+                </div>
+            </div>
+
+            <!-- Tarjeta 3 -->
+            <div class="glitch-card p-6 nier-border bg-white/5 cursor-pointer" data-title="DMC 5">
+                <h3 class="text-xl font-bold mb-2">Devil May Cry 5</h3>
+                <p class="text-xs text-gray-400">Año: 2019 | Desarrollador: Capcom</p>
+                <div class="mt-4 flex gap-2">
+                    <span class="px-2 py-1 text-xs border border-white/20">Hack and Slash</span>
+                    <span class="px-2 py-1 text-xs border border-white/20">Acción</span>
+                </div>
+            </div>
+
+            <!-- Tarjeta 4 -->
+            <div class="glitch-card p-6 nier-border bg-white/5 cursor-pointer" data-title="Silksong">
+                <h3 class="text-xl font-bold mb-2">Hollow Knight: Silksong</h3>
+                <p class="text-xs text-gray-400">Año: TBA | Desarrollador: Team Cherry</p>
+                <div class="mt-4 flex gap-2">
+                    <span class="px-2 py-1 text-xs border border-white/20">Metroidvania</span>
+                    <span class="px-2 py-1 text-xs border border-white/20">Próximamente</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
