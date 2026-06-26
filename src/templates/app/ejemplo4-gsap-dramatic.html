@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo 4: Animación Dramática con GSAP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <style>
+        /* Estilos Nier: Automata */
+        body {
+            background-color: #0a0a0a;
+            color: #e0e0e0;
+            font-family: 'Courier New', monospace;
+            overflow-x: hidden;
+        }
+        .nier-border {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .nier-accent {
+            color: #00ffff;
+        }
+        /* Elementos para animar */
+        .hero-title {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+        }
+        .char-line {
+            display: inline-block;
+            transform: translateY(100%);
+            opacity: 0;
+        }
+        .data-panel {
+            transform: scaleX(0);
+            transform-origin: left;
+        }
+    </style>
+</head>
+<body class="p-8">
+
+    <div class="max-w-5xl mx-auto">
+        <!-- Botón para reiniciar animación -->
+        <button id="replay-btn" class="mb-8 px-4 py-2 bg-white/10 hover:bg-white/20 border border-white/30 text-white font-mono text-sm transition-colors duration-300">
+            Reproducir Animación
+        </button>
+
+        <!-- Contenedor Principal -->
+        <div class="relative">
+            <!-- Título Hero -->
+            <div class="hero-title mb-8">
+                <h1 class="text-5xl md:text-7xl font-bold tracking-tight">
+                    <span class="char-line nier-accent">NieR:</span>
+                    <span class="char-line ml-4">Automata</span>
+                </h1>
+            </div>
+
+            <!-- Línea decorativa -->
+            <div id="divider-line" class="w-0 h-[1px] bg-white/30 mb-8"></div>
+
+            <!-- Panel de Datos -->
+            <div id="data-panel" class="data-panel grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                <div class="p-4 nier-border bg-white/5">
+                    <h3 class="text-xs text-gray-400 mb-2 font-mono">DESARROLLADOR</h3>
+                    <p class="text-lg font-bold">PlatinumGames</p>
+                </div>
+                <div class="p-4 nier-border bg-white/5">
+                    <h3 class="text-xs text-gray-400 mb-2 font-mono">AÑO DE LANZAMIENTO</h3>
+                    <p class="text-lg font-bold">2017</p>
+                </div>
+                <div class="p-4 nier-border bg-white/5">
+                    <h3 class="text-xs text-gray-400 mb-2 font-mono">GÉNERO</h3>
+                    <p class="text-lg font-bold">Acción RPG</p>
+                </div>
+            </div>
+
+            <!-- Descripción -->
+            <div id="description" class="opacity-0 max-w-3xl">
+                <p class="text-sm leading-relaxed mb-4">
+                    En un futuro distópico, la humanidad ha sido expulsada de la Tierra por invasores alienígenas y sus criaturas biomecánicas. 
+                    Como parte de la fuerza de androides YoRHa, las unidades 2B, 9S y A2 luchan para recuperar el planeta.
+                </p>
+                <div class="flex gap-4">
+                    <div class="flex items-center gap-2">
+                        <div class="w-2 h-2 bg-[#00ffff]"></div>
+                        <span class="text-xs font-mono">HISTORIA</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <div class="w-2 h-2 bg-[#00ffff]"></div>
+                        <span class="text-xs font-mono">MISIONES</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <div class="w-2 h-2 bg-[#00ffff]"></div>
+                        <span class="text-xs font-mono">PERSONAJES</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Función para ejecutar la animación
+        function playAnimation() {
+            // Resetear estados iniciales
+            gsap.set('.char-line', { y: '100%', opacity: 0 });
+            gsap.set('#divider-line', { width: 0 });
+            gsap.set('#data-panel', { scaleX: 0 });
+            gsap.set('#description', { opacity: 0 });
+
+            const tl = gsap.timeline();
+
+            // Animación del título (efecto de escritura)
+            tl.to('.char-line', {
+                y: '0%',
+                opacity: 1,
+                duration: 0.8,
+                stagger: 0.2,
+                ease: 'power3.out'
+            })
+            // Línea divisoria
+            .to('#divider-line', {
+                width: '100%',
+                duration: 0.6,
+                ease: 'power2.inOut'
+            }, '-=0.3')
+            // Panel de datos
+            .to('#data-panel', {
+                scaleX: 1,
+                duration: 0.5,
+                ease: 'power2.out'
+            }, '-=0.2')
+            // Descripción
+            .to('#description', {
+                opacity: 1,
+                duration: 0.8,
+                ease: 'power2.out'
+            }, '-=0.3');
+        }
+
+        // Ejecutar animación al cargar
+        document.addEventListener('DOMContentLoaded', () => {
+            playAnimation();
+            
+            // Botón para reproducir de nuevo
+            document.getElementById('replay-btn').addEventListener('click', playAnimation);
+        });
+    </script>
+
+</body>
+</html>

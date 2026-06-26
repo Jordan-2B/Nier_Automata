@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo 3: Barra de Progreso con Alpine.js</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <style>
+        /* Estilos Nier: Automata */
+        body {
+            background-color: #0a0a0a;
+            color: #e0e0e0;
+            font-family: 'Courier New', monospace;
+        }
+        .nier-border {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .nier-accent {
+            color: #00ffff;
+        }
+        /* Animación suave para la barra */
+        .progress-bar {
+            transition: width 0.5s ease-out;
+        }
+    </style>
+</head>
+<body class="p-8">
+
+    <div class="max-w-3xl mx-auto" x-data="{ 
+        misiones: [
+            { id: 1, nombre: 'Prólogo: Campo de Flores', completada: true },
+            { id: 2, nombre: 'Encuentro en la Ciudad en Ruinas', completada: true },
+            { id: 3, nombre: 'Primera Misión de Asalto', completada: false },
+            { id: 4, nombre: 'Infiltración a la Fábrica', completada: false },
+            { id: 5, nombre: 'Derrotar al Goliath', completada: false }
+        ]
+    }">
+        <h1 class="text-3xl font-bold mb-6 nier-accent">Ejemplo 3: Barra de Progreso con Alpine.js</h1>
+        <p class="mb-8 text-sm">Sistema de seguimiento de misiones principales con progreso automático.</p>
+        
+        <!-- Resumen de Progreso -->
+        <div class="mb-8 p-4 nier-border bg-white/5">
+            <div class="flex justify-between items-center mb-2">
+                <span class="text-sm font-mono">Progreso General</span>
+                <span class="text-sm font-mono nier-accent" x-text="`${Math.round(misiones.filter(m => m.completada).length / misiones.length * 100)}%`"></span>
+            </div>
+            <div class="w-full h-2 bg-white/10 rounded-none overflow-hidden">
+                <div class="h-full bg-[#00ffff] progress-bar" 
+                     :style="`width: ${misiones.filter(m => m.completada).length / misiones.length * 100}%`"></div>
+            </div>
+        </div>
+
+        <!-- Lista de Misiones -->
+        <div class="space-y-3">
+            <template x-for="mision in misiones" :key="mision.id">
+                <div class="flex items-center gap-4 p-3 nier-border hover:bg-white/5 transition-colors cursor-pointer"
+                     @click="mision.completada = !mision.completada">
+                    <!-- Checkbox personalizado -->
+                    <div class="w-5 h-5 border flex items-center justify-center"
+                         :class="mision.completada ? 'bg-[#00ffff] border-[#00ffff]' : 'border-white/40'">
+                        <svg x-show="mision.completada" class="w-3 h-3 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                    </div>
+                    
+                    <!-- Nombre de la misión -->
+                    <span class="flex-1 text-sm font-mono" 
+                          :class="mision.completada ? 'text-gray-500 line-through' : 'text-white'">
+                        <span x-text="mision.nombre"></span>
+                    </span>
+                    
+                    <!-- Estado -->
+                    <span class="text-xs px-2 py-1 border"
+                          :class="mision.completada ? 'border-green-500/50 text-green-400' : 'border-white/20 text-gray-400'"
+                          x-text="mision.completada ? 'COMPLETADO' : 'PENDIENTE'">
+                    </span>
+                </div>
+            </template>
+        </div>
+        
+        <p class="mt-6 text-xs text-gray-500">* Haz clic en una misión para marcarla como completada/pendiente</p>
+    </div>
+
+</body>
+</html>
