@@ -1,54 +1,23 @@
-```
+# =====================================
 # Dependencies
+# =====================================
 node_modules/
 
-# Build artifacts
-dist/
-build/
-target/
+# =====================================
+# AI Assistants
+# =====================================
 
-# Dependencies
-.venv/
-venv/
-node_modules/
-.julia/
-zig-cache/
-.deps/
+# Claude Code
+.claude/
 
-# Logs and temp files
-*.log
-*.tmp
-*.swp
-*.swo
-*.out
+# Qwen Code
+.qwen/
 
-# Environment
-.env
-.env.local
-.env.*
+# Continue
+.continue/
 
-# Editors
-.vscode/
-.idea/
-*.swp
-*.swo
+# Cursor
+.cursor/
 
-# System
-.DS_Store
-Thumbs.db
-
-
-
-# Node specific
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-
-# Build outputs
-dist/
-build/
-*.jar
-*.war
-*.class
+# Windsurf
+.windsurf/
