@@ -1,4 +1,4 @@
-# 🎮 Game Wiki - Mi Colección de Juegos Favoritos
+# 🎮 Game Wiki — Mi Colección de Juegos Favoritos
 
 Una página web dedicada a recopilar y organizar toda la información de mis juegos favoritos, incluyendo historias, misiones, personajes y más.
 
@@ -6,15 +6,15 @@ Una página web dedicada a recopilar y organizar toda la información de mis jue
 
 ## 📖 Descripción
 
-Este proyecto es una wiki personal que contiene información detallada sobre videojuegos, organizada de manera clara y accesible. Cada juego tiene su propia sección con:
+Este proyecto es una wiki personal con información detallada sobre videojuegos, organizada de manera clara y accesible. Cada juego tiene su propia sección con:
 
-- **Historia/Trama**: Resumen completo de la narrativa del juego
-- **Misiones Principales**: Guía paso a paso de la campaña principal
-- **Misiones Secundarias**: Detalle de quests opcionales y contenido extra
-- **Personajes**: Información sobre protagonistas, antagonistas y NPCs
-- **Objetos/Items**: Base de datos de equipamiento y consumibles
-- **Logros/Trofeos**: Lista completa de achievements
-- **Galería**: Imágenes y arte conceptual
+- **Historia/Trama** — Resumen completo de la narrativa
+- **Misiones Principales** — Guía paso a paso de la campaña
+- **Misiones Secundarias** — Quests opcionales y contenido extra
+- **Personajes** — Protagonistas, antagonistas y NPCs
+- **Objetos/Items** — Base de datos de equipamiento y consumibles
+- **Logros/Trofeos** — Lista completa de achievements
+- **Galería** — Imágenes y arte conceptual
 
 ---
 
@@ -22,145 +22,85 @@ Este proyecto es una wiki personal que contiene información detallada sobre vid
 
 **En Desarrollo** 🚧
 
-Actualmente en fase de configuración inicial con el stack tecnológico definido.
+Fase de planificación completada. Stack tecnológico y arquitectura definidos.
 
 ---
 
 ## 🛠️ Stack Tecnológico
 
-### Frontend
+El proyecto está organizado en tres capas con responsabilidades claras.
+
+### Capa de Presentación
+
 | Tecnología | Versión | Propósito |
 |------------|---------|-----------|
-| **HTML5** | - | Estructura semántica |
-| **HTMX** | 1.9.x | Interactividad sin JavaScript complejo |
-| **Alpine.js** | 3.x | Reactividad ligera |
+| **HTML5** | — | Estructura semántica |
 | **Tailwind CSS** | 3.x | Estilos utilitarios |
+| **Alpine.js** | 3.x | Reactividad ligera y microinteracciones |
 | **GSAP** | 3.12.x | Animaciones avanzadas |
+| **React** | 18.x | Componentes interactivos selectivos (buscador, trackers) |
 
-### Backend & Base de Datos
+### Capa de Lógica
+
 | Tecnología | Propósito |
 |------------|-----------|
-| **React + JavaScript** | API y renderizado dinámico |
+| **HTMX** | 1.9.x | Peticiones al servidor sin JS complejo |
+| **Node.js + Express** | Servidor, rutas, renderizado de fragmentos HTML |
+| **REST API** | Endpoints para los componentes React |
+
+### Capa de Datos
+
+| Tecnología | Propósito |
+|------------|-----------|
 | **PostgreSQL** | Base de datos relacional |
-| **DBeaver** | Gestión visual de la BD |
+| **DBeaver** | Gestión visual de la base de datos |
 
 ### Iconografía
-- **Phosphor Icons** o **Heroicons (Outline)** - Estilo minimalista tipo Nier: Automata
 
-### Desarrollo Local
-- Servidor local (sin hosting externo por ahora)
-- Node.js para herramientas de desarrollo
+**Phosphor Icons** o **Heroicons (Outline)** — estilo minimalista, coherente con la estética NieR: Automata.
+
+> **Nota sobre React:** No es el núcleo del proyecto sino un complemento selectivo. HTMX maneja la navegación y carga de contenido; React aparece únicamente donde hay estado complejo real (buscador con filtros, tracker de logros, etc.).
 
 ---
 
 ## 📁 Estructura del Proyecto
 
 ```
-├── package.json            # Configuración de Node.js y dependencias
-├── README.md               # Documentación del proyecto
-├── src/                    # Código fuente principal
-│   ├── js/                 # Lógica JavaScript (Vanilla y React)
-│   │   └── App.js          # Componente React (Lista de Tareas)
-│   ├── db/                 # Scripts y configuración de base de datos
-│   │   ├── schema.sql      # Esquema de PostgreSQL
-│   │   └── seeds.sql       # Datos iniciales
-│   └── static/             # Archivos estáticos
-│       ├── images/         # Imágenes del proyecto
-│       ├── icons/          # Iconos (Phosphor, Heroicons)
-│       ├── App.css         # Estilos del componente React
-│       └── index.html      # HTML base (si se requiere)
-├── templates/              # Plantillas HTML
-│   ├── index.html          # Plantilla principal
-│   ├── app/                # Plantillas específicas de la aplicación
-│   │   ├── ejemplo1-fadein-htmx.html
-│   │   ├── ejemplo2-glitch-css.html
-│   │   ├── ejemplo3-progress-alpine.html
-│   │   └── ejemplo4-gsap-dramatic.html
-│   └── errors/             # Plantillas de errores
-│       └── content-fragment.html
+├── .gitignore
+├── package.json              # Dependencias y scripts Node.js
+├── package-lock.json
+├── README.md
+├── style-guide.md            # Guía de estilos y decisiones de diseño
+└── src/
+    ├── js/
+    │   └── App.js            # Componente React principal
+    ├── static/
+    │   ├── App.css           # Estilos del componente React
+    │   └── input.css         # Entrada para compilación de Tailwind
+    └── templates/
+        ├── app/              # Plantillas de la aplicación
+        │   ├── ejemplo1-fadein-htmx.html
+        │   ├── ejemplo2-glitch-css.html
+        │   ├── ejemplo3-progress-alpine.html
+        │   └── ejemplo4-gsap-dramatic.html
+        └── error/
+            └── content-fragment.html
 ```
 
 ---
 
-## 🎯 Roadmap
-
-### Fase 1: Planificación ✅
-- [x] Crear template de issue con roadmap
-- [x] Definir tecnología a usar
-- [x] Crear ejemplos de animaciones y efectos
-- [x] Diseñar arquitectura de información
-
-### Fase 2: Desarrollo Frontend ⬜
-- [ ] Configurar entorno de desarrollo local (Node.js, PostgreSQL, DBeaver)
-- [ ] Crear estructura HTML base con HTMX
-- [ ] Implementar estilos Tailwind CSS
-
-### Fase 3: Contenido ⬜
-- [ ] Configurar base de datos PostgreSQL (esquema para juegos, misiones, personajes)
-- [ ] Desarrollar backend con React + JavaScript
-- [ ] Integrar HTMX con backend para carga dinámica
-- [ ] Populado de contenido (NieR: Automata, Hollow Knight, Silksong, DMC 5)
-
-### Fase 4: Mejoras ⬜
-- [ ] Optimización técnica
-- [ ] Accesibilidad y SEO
-- [ ] Testing multiplataforma
-
-### Fase 5: Despliegue ⬜
-- [ ] Configurar servidor local para React + PostgreSQL
-- [ ] Pruebas de integración HTMX + Backend
-- [ ] Despliegue en entorno local (sin hosting externo)
-
----
-
-## 🤝 Cómo Contribuir
-
-1. Revisa el [roadmap completo](.github/ISSUE_TEMPLATE/implementacion-wiki-juegos.md) para ver la hoja de ruta detallada.
-2. Crea un branch para tu feature (`git checkout -b feature/nueva-funcionalidad`)
-3. Commit tus cambios (`git commit -m 'Añadir nueva funcionalidad'`)
-4. Push al branch (`git push origin feature/nueva-funcionalidad`)
-5. Abre un Pull Request
-
----
-
-## 📄 Licencia
-
-Este proyecto es de uso personal. Todo el contenido de los juegos pertenece a sus respectivos desarrolladores y editores.
-
----
-
-## 🔗 Recursos Útiles
-
-- [MDN Web Docs](https://developer.mozilla.org/)
-- [FreeCodeCamp](https://www.freecodecamp.org/)
-- [CSS Tricks](https://css-tricks.com/)
-
----
-
-<div align="center">
-  <strong>Hecho con ❤️ para los amantes de los videojuegos</strong>
-</div>
----
-
 ## 🎬 Ejemplos de Animaciones y Efectos
 
-Los ejemplos ahora se encuentran organizados en la carpeta `templates/app/`:
-Se han creado ejemplos demostrativos en las carpetas `examples/` y `example/`:
-
-### Ejemplos HTML (carpeta `examples/`)
+Los ejemplos demostrativos están en `src/templates/app/`:
 
 | Archivo | Descripción | Tecnologías |
 |---------|-------------|-------------|
-| `ejemplo1-fadein-htmx.html` | Fade-in suave al cargar contenido dinámico | HTMX + CSS |
+| `ejemplo1-fadein-htmx.html` | Fade-in al cargar contenido dinámico | HTMX + CSS |
 | `ejemplo2-glitch-css.html` | Efecto glitch en tarjetas de juegos (hover) | CSS puro |
-| `ejemplo3-progress-alpine.html` | Barra de progreso para misiones con estado interactivo | Alpine.js + Tailwind |
-| `ejemplo4-gsap-dramatic.html` | Animación dramática de entrada para páginas principales | GSAP |
+| `ejemplo3-progress-alpine.html` | Barra de progreso para misiones | Alpine.js + Tailwind |
+| `ejemplo4-gsap-dramatic.html` | Animación dramática de entrada | GSAP |
 
-Adicionalmente, el componente React de Lista de Tareas se encuentra en:
-- **JavaScript**: `src/js/App.js`
-- **Estilos**: `src/static/App.css`
-
-**Nota sobre los estilos**: Los archivos de ejemplos HTML usan estilos CSS independientes que **SÍ se pueden usar simultáneamente** sin conflictos, ya que cada archivo HTML carga sus propios estilos de manera aislada.
+Cada archivo HTML carga sus propios estilos de forma aislada, por lo que pueden coexistir sin conflictos.
 
 ---
 
@@ -168,97 +108,82 @@ Adicionalmente, el componente React de Lista de Tareas se encuentra en:
 
 ### Requisitos Previos
 
-1. **Instalar Node.js** (si no lo tienes):
-   - Descarga desde [nodejs.org](https://nodejs.org/)
-   - O usa un gestor de versiones como `nvm`
+Instalar [Node.js](https://nodejs.org/) e instalar dependencias del proyecto:
 
-2. **Instalar dependencias del proyecto**:
-   ```bash
-   cd /workspace
-   npm install
-   ```
-
-### Ejemplos HTML (carpeta `templates/app/`)
-
-1. **Opción A: Servidor simple con Python**
-   ```bash
-   cd /workspace/templates/app
-   python -m http.server 8000
-   ```
-   Luego abre `http://localhost:8000/ejemplo1-fadein-htmx.html` en tu navegador.
-
-2. **Opción B: Extensión Live Server en VS Code**
-   - Instala la extensión "Live Server"
-   - Abre cualquier archivo `.html` de la carpeta `templates/app/`
-   - Haz clic derecho → "Open with Live Server"
-
-3. **Opción C: Usando Node.js (http-server)**
-   ```bash
-   npm install -g http-server
-   cd /workspace/templates/app
-   http-server -p 8000
-   ```
-
-### Ejemplo React (Lista de Tareas)
-
-**Importante**: Este ejemplo está configurado para funcionar con el `package.json` raíz del proyecto.
-
-1. **Asegúrate de tener las dependencias instaladas**:
-   ```bash
-   cd /workspace
-   npm install
-   ```
-
-2. **Ejecutar la aplicación**:
-### Ejemplo React (carpeta `example/`)
-
-Para ejecutar la aplicación de Lista de Tareas en React:
-
-1. **Crear un proyecto React nuevo** (si no tienes uno):
-   ```bash
-   npx create-react-app mi-todo-app
-   cd mi-todo-app
-   ```
-
-2. **Reemplazar los archivos**:
-   - Copia `/workspace/example/App.js` a `src/App.js`
-   - Copia `/workspace/example/App.css` a `src/App.css`
-
-3. **Ejecutar la aplicación**:
-   ```bash
-   npm start
-   ```
-   La aplicación se abrirá automáticamente en `http://localhost:3000`
-
-**Nota**: Los archivos del componente React ya están en su ubicación correcta:
-- `src/js/App.js` - Componente principal
-- `src/static/App.css` - Estilos del componente
-
-Si prefieres crear un proyecto React independiente:
 ```bash
-npx create-react-app mi-todo-app
-cd mi-todo-app
-# Luego copia App.js y App.css desde src/js/ y src/static/ respectivamente
-npm start
+npm install
 ```
 
-### Estructura Actual del Proyecto
+### Opción A — Servidor Python (sin instalar nada extra)
 
-La estructura de carpetas configurada es:
-
-```
-/workspace
-├── package.json            ✅ Configurado
-├── src/
-│   ├── js/                 ✅ Con App.js (React)
-│   ├── db/                 ✅ Lista
-│   └── static/
-│       ├── images/         ✅ Lista
-│       ├── icons/          ✅ Lista
-│       └── App.css         ✅ Estilos React
-├── templates/
-│   ├── index.html          (por crear)
-│   ├── app/                ✅ Con 4 ejemplos HTML
-│   └── errors/             ✅ Con plantilla de error
+```bash
+cd src/templates/app
+python -m http.server 8000
 ```
 
+Abrir `http://localhost:8000/ejemplo1-fadein-htmx.html` en el navegador.
+
+### Opción B — Live Server (VS Code)
+
+Instalar la extensión **Live Server**, abrir cualquier `.html` de `src/templates/app/` y hacer clic derecho → *Open with Live Server*.
+
+### Opción C — http-server (Node.js)
+
+```bash
+npx http-server src/templates/app -p 8000
+```
+
+---
+
+## 🎯 Roadmap
+
+### Fase 1: Planificación ✅
+- [x] Definir stack tecnológico y arquitectura
+- [x] Crear ejemplos de animaciones y efectos
+- [x] Diseñar arquitectura de información
+- [x] Documentar guía de estilos (`style-guide.md`)
+
+### Fase 2: Entorno y estructura base ⬜
+- [ ] Configurar Node.js + Express como servidor local
+- [ ] Crear estructura HTML base con HTMX
+- [ ] Compilar y conectar Tailwind CSS (`input.css` → `output.css`)
+- [ ] Configurar PostgreSQL local y esquema inicial
+
+### Fase 3: Desarrollo de contenido ⬜
+- [ ] Definir esquema PostgreSQL (juegos, misiones, personajes, items)
+- [ ] Integrar HTMX con Express para carga dinámica de fragmentos
+- [ ] Desarrollar componentes React para buscador y tracker de logros
+- [ ] Poblar contenido: NieR: Automata, Hollow Knight, Silksong, DMC 5
+
+### Fase 4: Mejoras ⬜
+- [ ] Optimización de rendimiento
+- [ ] Accesibilidad (WCAG AA)
+- [ ] Testing multiplataforma
+
+### Fase 5: Despliegue local ⬜
+- [ ] Configurar servidor local completo (Express + PostgreSQL)
+- [ ] Pruebas de integración HTMX + API REST + React
+- [ ] Despliegue en entorno local (sin hosting externo)
+
+---
+
+## 🔗 Recursos Útiles
+
+- [MDN Web Docs](https://developer.mozilla.org/)
+- [HTMX Docs](https://htmx.org/docs/)
+- [Alpine.js Docs](https://alpinejs.dev/)
+- [GSAP Docs](https://gsap.com/docs/v3/)
+- [Tailwind CSS Docs](https://tailwindcss.com/docs)
+- [Express Docs](https://expressjs.com/)
+
+---
+
+## 📄 Licencia
+
+Proyecto de uso personal. Todo el contenido de los juegos pertenece a sus respectivos desarrolladores y editores.
+
+---
+
+<div align="center">
+  <strong>Hecho con ❤️ para los amantes de los videojuegos</strong>
+</div>
